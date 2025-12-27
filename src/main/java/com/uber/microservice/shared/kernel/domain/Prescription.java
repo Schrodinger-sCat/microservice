@@ -1,4 +1,4 @@
-package com.uber.microservice.shared.kernel.inteface.domain;
+package com.uber.microservice.shared.kernel.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
