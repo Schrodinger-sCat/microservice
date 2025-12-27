@@ -1,14 +1,24 @@
 package com.uber.microservice.shared.kernel.domain;
 
 
+import com.uber.microservice.shared.kernel.inteface.Command;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class PrescriptionAggregateRoot {
   private List<Medicine> medicineList = new ArrayList<>();
   private Doctor doctor;
   private Patient patient;
+
+  public Prescription createPrescription(Command command) {
+    addMedicineList(command.getMedicineList());
+    setDoctor(command.getDoctor());
+    setPatient(command.getPatient());
+    return generatePrescription();
+  }
 
   public void addMedicine(Medicine medicine) {
     medicineList.add(medicine);
@@ -19,10 +29,16 @@ public class PrescriptionAggregateRoot {
   }
 
   public void setDoctor(Doctor doctor) {
+    if (Objects.isNull(doctor)) {
+      throw new RuntimeException("A doctor must approve this prescription");
+    }
     this.doctor = doctor;
   }
 
   public void setPatient(Patient patient) {
+    if (Objects.isNull(patient)) {
+      throw new RuntimeException("A prescription must be point to a patient");
+    }
     this.patient = patient;
   }
 
