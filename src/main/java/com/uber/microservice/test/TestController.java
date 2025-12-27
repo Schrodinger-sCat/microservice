@@ -5,8 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.http.HttpResponse;
-
 @RestController
 public class TestController {
 
@@ -24,7 +22,7 @@ public class TestController {
 
   @GetMapping("/prescription")
   public ResponseEntity<String> prescription() {
-    producer.sendPrescription(new Prescription());
+      producer.sendPrescription(new Prescription(100, "Prescription-1"));
     return ResponseEntity.ok("Okay");
   }
 }

@@ -2,29 +2,31 @@ package com.uber.microservice.test;
 
 import com.uber.microservice.dependency.Prescription;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
 @Component
 public class Producer {
 
-  private final RabbitTemplate rabbitTemplate;
-  private final ObjectMapper objectMapper;
+    private final RabbitTemplate rabbitTemplate;
+    private final ObjectMapper objectMapper;
 
-  public Producer(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
-    this.rabbitTemplate = rabbitTemplate;
-    this.objectMapper = objectMapper;
-  }
+    public Producer(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.objectMapper = objectMapper;
+    }
 
-  public void send(String msg) {
-    rabbitTemplate.convertAndSend("test.exchange", "test.key", msg);
-  }
+    public void send(String msg) {
+        rabbitTemplate.convertAndSend("test.exchange", "test.key", msg);
+    }
 
-  public void sendPrescription(Prescription prescription) {
-    ObjectMapper mapper = new ObjectMapper();
-    rabbitTemplate.convertAndSend("test.exchange", "test.key", objectMapper.writeValueAsString(prescription));
-  }
+    public void sendPrescription(Prescription prescription) {
+        rabbitTemplate.convertAndSend(
+                "loky.prescription.exchange",
+                "loky.prescription.key",
+                prescription
+        );
+    }
 
 
 }
