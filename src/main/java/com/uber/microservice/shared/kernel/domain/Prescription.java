@@ -17,4 +17,5 @@ public class Prescription {
     private long id;
     private String name;
     private List<Medicine> medicineList;
+    private Doctor doctor;
 }
