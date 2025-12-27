@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,4 +16,5 @@ import lombok.ToString;
 public class Prescription {
     private long id;
     private String name;
+    private List<Medicine> medicineList;
 }
