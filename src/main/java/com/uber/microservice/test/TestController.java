@@ -3,6 +3,7 @@ package com.uber.microservice.test;
 import com.uber.microservice.shared.kernel.domain.Prescription;
 import com.uber.microservice.shared.kernel.inteface.Command;
 import com.uber.microservice.shared.kernel.inteface.ICommand;
+import com.uber.microservice.shared.kernel.inteface.IEvent;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,8 @@ public class TestController {
 
   @PostMapping("/generate-prescription")
   public ResponseEntity<String> generatePrescription(@RequestBody Command command) {
-    iCommand.handle(command);
+    IEvent event = iCommand.handle(command);
+    producer.publishPrescription(event);
     return ResponseEntity.ok("Okay");
   }
 }
