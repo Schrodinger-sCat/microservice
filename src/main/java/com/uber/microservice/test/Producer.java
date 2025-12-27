@@ -34,8 +34,8 @@ public class Producer {
 
     public void publishPrescription(IEvent event) {
         rabbitTemplate.convertAndSend(
-            "loki.prescription.exchange",
-            "loki.prescription.key",
+            "prescription.event",
+            "prescription.event",
             event
         );
 

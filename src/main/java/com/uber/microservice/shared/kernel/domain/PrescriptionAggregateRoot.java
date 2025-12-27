@@ -22,7 +22,7 @@ public class PrescriptionAggregateRoot {
   }
 
   public void addMedicine(Medicine medicine) {
-    medicineList.add(medicine);
+    this.medicineList.add(medicine);
   }
 
   public void addMedicineList(List<Medicine> medicineList) {
@@ -30,7 +30,7 @@ public class PrescriptionAggregateRoot {
       throw new RuntimeException("A Prescription must contain medicine");
     }
 
-    medicineList.addAll(medicineList);
+    this.medicineList.addAll(medicineList);
   }
 
   public void setDoctor(Doctor doctor) {
