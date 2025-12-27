@@ -1,6 +1,6 @@
 package com.uber.microservice.test;
 
-import com.uber.microservice.dependency.Prescription;
+import com.uber.microservice.shared.kernel.inteface.domain.Prescription;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
