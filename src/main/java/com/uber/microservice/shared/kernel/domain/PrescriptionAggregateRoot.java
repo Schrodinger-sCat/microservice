@@ -2,6 +2,7 @@ package com.uber.microservice.shared.kernel.domain;
 
 
 import com.uber.microservice.shared.kernel.inteface.Command;
+import com.uber.microservice.shared.kernel.inteface.PrescriptionCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class PrescriptionAggregateRoot {
   private Doctor doctor;
   private Patient patient;
 
-  public Prescription createPrescription(Command command) {
+  public Prescription createPrescription(PrescriptionCommand command) {
     addMedicineList(command.getMedicineList());
     setDoctor(command.getDoctor());
     setPatient(command.getPatient());

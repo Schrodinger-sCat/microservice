@@ -5,6 +5,7 @@ import com.uber.microservice.shared.kernel.domain.PrescriptionAggregateRoot;
 import com.uber.microservice.shared.kernel.inteface.Command;
 import com.uber.microservice.shared.kernel.inteface.ICommand;
 import com.uber.microservice.shared.kernel.domain.Prescription;
+import com.uber.microservice.shared.kernel.inteface.PrescriptionCommand;
 import com.uber.microservice.test.Producer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ICommandHandler implements ICommand {
     @Override
     public void handle(Command command) {
         log.info("Processing prescription: {}", command);
-        Prescription prescription = new PrescriptionAggregateRoot().createPrescription(command);
+        Prescription prescription = new PrescriptionAggregateRoot().createPrescription((PrescriptionCommand) command);
         prescriptionRepository.save(prescription);
         producer.publishPrescription(prescription);
     }
