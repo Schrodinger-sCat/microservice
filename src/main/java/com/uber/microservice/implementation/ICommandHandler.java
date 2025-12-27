@@ -18,8 +18,6 @@ import java.util.Random;
 @Service
 public class ICommandHandler implements ICommand {
     @Autowired
-    public Producer producer;
-    @Autowired
     public PrescriptionRepository prescriptionRepository;
 
     @Override
