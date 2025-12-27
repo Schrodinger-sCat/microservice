@@ -8,10 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 
-@SpringBootApplication(scanBasePackages = {
-    "com.uber.microservice",
-    "com.uber.microservice.shared-kernel" // package in shared-kernel
-})
 public class MicroserviceApplication {
 
   public static void main(String[] args) {
