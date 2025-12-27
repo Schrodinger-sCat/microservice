@@ -22,8 +22,8 @@ public class Producer {
 
     public void sendPrescription(Prescription prescription) {
         rabbitTemplate.convertAndSend(
-                "loky.prescription.exchange",
-                "loky.prescription.key",
+                "loki.prescription.exchange",
+                "loki.prescription.key",
                 prescription
         );
     }

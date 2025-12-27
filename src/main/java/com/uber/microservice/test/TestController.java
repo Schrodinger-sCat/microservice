@@ -3,6 +3,8 @@ package com.uber.microservice.test;
 import com.uber.microservice.dependency.Prescription;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,9 +22,9 @@ public class TestController {
     return "OK";
   }
 
-  @GetMapping("/prescription")
-  public ResponseEntity<String> prescription() {
-      producer.sendPrescription(new Prescription(100, "Prescription-1"));
+    @PostMapping("/prescription")
+    public ResponseEntity<String> prescription(@RequestBody Prescription prescription) {
+        producer.sendPrescription(prescription);
     return ResponseEntity.ok("Okay");
   }
 }

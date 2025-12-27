@@ -18,12 +18,12 @@ public class RabbitConfig {
 
     @Bean
     DirectExchange exchange() {
-        return new DirectExchange("loky.prescription.exchange");
+        return new DirectExchange("loki.prescription.exchange");
     }
 
     @Bean
     Queue queue() {
-        return new Queue("loky.prescription.queue", true);
+        return new Queue("loki.prescription.queue", true);
     }
 
     @Bean
@@ -31,6 +31,6 @@ public class RabbitConfig {
         return BindingBuilder
                 .bind(queue())
                 .to(exchange())
-                .with("loky.prescription.key");
+                .with("loki.prescription.key");
     }
 }
