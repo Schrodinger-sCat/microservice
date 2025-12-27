@@ -1,5 +1,6 @@
 package com.uber.microservice.implementation;
 
+import com.uber.microservice.repositories.PrescriptionRepository;
 import com.uber.microservice.shared.kernel.domain.PrescriptionAggregateRoot;
 import com.uber.microservice.shared.kernel.inteface.Command;
 import com.uber.microservice.shared.kernel.inteface.ICommand;
@@ -12,19 +13,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ICommandHandler implements ICommand {
-
     @Autowired
-    private final Producer producer;
-
-    public ICommandHandler(Producer producer) {
-        this.producer = producer;
-    }
+    public Producer producer;
+    @Autowired
+    public PrescriptionRepository prescriptionRepository;
 
     @Override
     public void handle(Command command) {
         log.info("Processing prescription: {}", command);
         Prescription prescription = new PrescriptionAggregateRoot().createPrescription(command);
-        //Save in DB
+        prescriptionRepository.save(prescription);
         producer.publishPrescription(prescription);
     }
 }
