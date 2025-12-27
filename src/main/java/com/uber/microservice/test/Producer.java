@@ -26,6 +26,7 @@ public class Producer {
                 "loki.prescription.key",
                 prescription
         );
+
     }
 
 
