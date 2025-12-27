@@ -1,7 +1,7 @@
 package com.uber.microservice.test;
 
 import com.uber.microservice.shared.kernel.inteface.ICommand;
-import com.uber.microservice.shared.kernel.inteface.domain.Prescription;
+import com.uber.microservice.shared.kernel.domain.Prescription;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
