@@ -1,16 +1,28 @@
 package com.uber.microservice.implementation;
 
+import com.uber.microservice.shared.kernel.inteface.Command;
 import com.uber.microservice.shared.kernel.inteface.ICommand;
 import com.uber.microservice.shared.kernel.domain.Prescription;
+import com.uber.microservice.test.Producer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class ICommandHandler implements ICommand {
 
+    @Autowired
+    private final Producer producer;
+
+    public ICommandHandler(Producer producer) {
+        this.producer = producer;
+    }
+
     @Override
-    public void handle(Prescription prescription) {
-        log.info("Processing prescription: {}", prescription);
+    public void handle(Command command) {
+        log.info("Processing prescription: {}", command);
+        Prescription prescription = new Prescription();
+        producer.publishPrescription(prescription);
     }
 }

@@ -1,6 +1,7 @@
 package com.uber.microservice.test;
 
 import com.uber.microservice.shared.kernel.domain.Prescription;
+import com.uber.microservice.shared.kernel.inteface.Command;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
@@ -29,5 +30,13 @@ public class Producer {
 
     }
 
+    public void publishPrescription(Prescription prescription) {
+        rabbitTemplate.convertAndSend(
+            "loki.prescription.exchange",
+            "loki.prescription.key",
+            prescription
+        );
+
+    }
 
 }
