@@ -1,7 +1,10 @@
 package com.uber.microservice.test;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.net.http.HttpResponse;
 
 @RestController
 public class TestController {
@@ -16,5 +19,10 @@ public class TestController {
   public String test() {
     producer.send("Shanto");
     return "OK";
+  }
+
+  @GetMapping("/prescription")
+  public ResponseEntity<String> prescription() {
+    return ResponseEntity.ok("Okay");
   }
 }
