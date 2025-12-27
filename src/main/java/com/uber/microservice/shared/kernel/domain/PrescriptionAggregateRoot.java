@@ -25,6 +25,10 @@ public class PrescriptionAggregateRoot {
   }
 
   public void addMedicineList(List<Medicine> medicineList) {
+    if (Objects.isNull(medicineList) || medicineList.isEmpty()) {
+      throw new RuntimeException("A Prescription must contain medicine");
+    }
+
     medicineList.addAll(medicineList);
   }
 

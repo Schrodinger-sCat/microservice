@@ -1,10 +1,6 @@
 package com.uber.microservice.shared.kernel.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,7 +12,10 @@ import java.util.List;
 public class Prescription {
     private long id;
     private String name;
+    @NonNull
     private List<Medicine> medicineList;
+    @NonNull
     private Patient patient;
+    @NonNull
     private Doctor doctor;
 }
