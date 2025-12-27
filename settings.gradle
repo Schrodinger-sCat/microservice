@@ -1,1 +1,2 @@
 rootProject.name = 'microservice'
+includeBuild('../shared-kernel')
